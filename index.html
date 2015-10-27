@@ -2,16 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" comment="width=device-width, initial-scale=1">
+        <meta name = "description" comment = "review page about Martian">
+        <meta name = "author" comment = "Yutong Pan">
         <title>Review</title>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery, Bootstrap -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		
+        <!-- Font Awsome -->
+        <link href="//netdna.bootstrapcdn.com/font-awesome/latest/css/font-awesome.css" rel="stylesheet">
         <!-- Include parse library here -->
-        <script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
+        <script src="https://www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
         <script type="text/javascript" src="js/review.js"></script>
         <link rel="stylesheet" href="css/main.css"/>
+
+        <!-- Raty FA -->
+        <script type="text/javascript" src="js/jquery.raty-fa.js"></script>
+
 
     </head>
     <body>
@@ -19,43 +32,45 @@
     		
             <!-- Here is where you should build your form.  
                 You can make it look nicer with bootstrap classes like "form-input" -->
+        
+        <h2>The Martian</h2>
+        <img src="img/images.jpeg">
+        <h3> Average Rating: </h3>
+        <div id = "avgRating"></div>
+        <p id = "desc">
+            </br>
+            The Martian is a 2015 American science fiction film directed by Ridley Scott and starring Matt Damon. The film is based on Andy Weir's 2011 novel The Martian, which was adapted into a screenplay by Drew Goddard.
+            </br></br>
+            When astronauts blast off from the planet Mars, they leave behind Mark Watney (Matt Damon), presumed dead after a fierce storm. With only a meager amount of supplies, the stranded visitor must utilize his wits and spirit to find a way to survive on the hostile planet. Meanwhile, back on Earth, members of NASA and a team of international scientists work tirelessly to bring him home, while his crew mates hatch their own plan for a daring rescue mission.
+        </p>
+
+
+        <h3>Write a review!</h3>
+        <div id="rating"></div>
+
+        <div id= "write">
         <form>
-            <h2>The Martian</h2>
-            <img src="img/images.jpeg">
-            <div id = "average"><h4> Average Rating: </h4></div>
-            <p id = "desc">
-                </br>
-                The Martian is a 2015 American science fiction film directed by Ridley Scott and starring Matt Damon. The film is based on Andy Weir's 2011 novel The Martian, which was adapted into a screenplay by Drew Goddard.
-                </br></br>
-                When astronauts blast off from the planet Mars, they leave behind Mark Watney (Matt Damon), presumed dead after a fierce storm. With only a meager amount of supplies, the stranded visitor must utilize his wits and spirit to find a way to survive on the hostile planet. Meanwhile, back on Earth, members of NASA and a team of international scientists work tirelessly to bring him home, while his crew mates hatch their own plan for a daring rescue mission.
-            </p>
-
-
-            <h3>Write a review!</h3>
-
-
             <div class = "form-group"> 
                 <label for = "title"></label>
                 <input id="title" class="form-control" placeholder="a title for your review"></input>
             </div>
             <div class = "form-group"> 
                 <label for = "content"></label>
-                <input id="content" class="form-control input-lg" placeholder="What did you think of this?"></input>
+                <textarea id="content" rows = "5" class="form-control input-lg" placeholder="What did you think of this?"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
-        <h3>Reviews</h3>
+        </div>
 
+        <div id = "reviewArea">
+            <h3>Reviews</h3>
+        </div>
 
 
 
 
 
     	</div>
-        <div class="container">
-            <ol id="list">
-            </ol>
-        </div>
     </body>
-    <script type="text/javascript" src="js/music.js"></script>
+    <script type="text/javascript" src="js/review.js"></script>
 </html>

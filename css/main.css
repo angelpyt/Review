@@ -2,13 +2,73 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300italic);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 
 body {
     font-family: "Lato", Helvetica Neue, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
     background-color: #E9EAEE;
 }
+img {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	body {
+		font-size: 17px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	body {
+		font-size: 18px;
+	}	
+}
 
 
+#T {
+  font-size: 23px;
+  display: inline;
+  margin-left: 5px;
+}
+
+#R {
+  display: inline;
+}
+
+.voting {
+  display: inline;
+  float: right;
+  margin-left: 5px;
+}
+
+
+#button {
+  display: inline;
+  float: right;
+  margin-left: 10px;
+}
+
+#Date {
+  font-size: 14px;
+  color: gray;
+  padding: 2px;
+}
+
+#H {
+  font-size: 14px;
+  color: gray;
+  padding: 2px;
+}
+
+#C {
+  padding: 2px;
+  font-size: 20px;
+}
