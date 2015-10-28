@@ -4,7 +4,7 @@ var Review = Parse.Object.extend('Review');
 
 var currentUser = Parse.User.current();
 
-
+//log user out
 $("#out").on("click", function() {
 	if (currentUser != null) {
 		Parse.User.logOut();
@@ -13,6 +13,7 @@ $("#out").on("click", function() {
 	}
 })
 
+//sign up for user
 $("#signup").submit(function() {
 	var user = new Parse.User();
 	user.set("username", $("#upname").val());
@@ -34,6 +35,7 @@ $("#signup").submit(function() {
 	return false;
 });
 
+//sign in for user
 $("#signin").submit(function() {
 	Parse.User.logIn($("#inname").val(), $("#inpassword").val(), {
 		success: function(user) {
@@ -47,7 +49,7 @@ $("#signin").submit(function() {
 	return false;
 });
 
-// clears all input fields
+// clears all input
 var clear = function() {
 	$("#upname").val("");
 	$("#uppassword").val("");
@@ -66,6 +68,7 @@ var clear = function() {
 //Rating 
 $('#rating').raty();
 
+//click event when write is submitted
 $('#write').submit(function() {
 	if (currentUser != null) {
 		var review = new Review();	
@@ -99,7 +102,7 @@ $('#write').submit(function() {
 	return false;
 })
 
-
+//write a function to get data
 var getData = function() {
 	var query = new Parse.Query(Review);
 	query.include("user");
@@ -110,7 +113,7 @@ var getData = function() {
 	})
 }
 
-
+// a function to build the list
 var buildList = function(data) {
 	var rating = 0;
 
@@ -122,7 +125,7 @@ var buildList = function(data) {
 	$("#avgRating").raty({score:rating/(data.length), readOnly: true});
 }
 
-
+//this function takes in an item, adds it to the sreen
 var addItem = function(item) {
 	//console.log('addItem', item);
 	var title = item.get('title');
