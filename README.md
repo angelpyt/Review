@@ -10,3 +10,5 @@ I did Authentication and Authorization. But I failed to display the username par
 
 4. Did you encounter any problems in this challenge we should warn students about in the future? How can we make the challenge better?
 display stars is a hard part. After that, I think everything's fine. 
+
+http://students.washington.edu/yutonp/info343/Review/
