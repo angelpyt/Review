@@ -72,3 +72,21 @@ img {
   padding: 2px;
   font-size: 20px;
 }
+
+#tit {
+  display: inline;
+  margin-top: 10px;
+}
+
+#user {
+  display: inline;
+  float: right;
+  margin-top: 15px;
+}
+
+#out {
+  display:inline;
+  float: right;
+  margin-right: 15px;
+  margin-top: 20px;
+}

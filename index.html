@@ -7,19 +7,15 @@
         <meta name = "author" comment = "Yutong Pan">
         <title>Review</title>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
         <!-- jQuery, Bootstrap -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		
         <!-- Font Awsome -->
         <link href="//netdna.bootstrapcdn.com/font-awesome/latest/css/font-awesome.css" rel="stylesheet">
         <!-- Include parse library here -->
         <script src="https://www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
-        <script type="text/javascript" src="js/review.js"></script>
         <link rel="stylesheet" href="css/main.css"/>
 
         <!-- Raty FA -->
@@ -29,13 +25,19 @@
     </head>
     <body>
     	<div class="container">
-    		
-            <!-- Here is where you should build your form.  
-                You can make it look nicer with bootstrap classes like "form-input" -->
-        
-        <h2>The Martian</h2>
+
+        <form id="account-form" action="user.html">
+            <button id="user" class="btn btn-lg btn-success" type="submit">Sign up</button>
+        </form>
+
+        <form id="account-form">
+            <button id="out" class="btn btn-md btn-info" type="submit">Log out</button>
+        </form>
+
+        <div id = "tit"><h1>The Martian</h1></div>
+
         <img src="img/images.jpeg">
-        <h3> Average Rating: </h3>
+        <h3> Average Rating </h3>
         <div id = "avgRating"></div>
         <p id = "desc">
             </br>
@@ -58,13 +60,12 @@
                 <label for = "content"></label>
                 <textarea id="content" rows = "5" class="form-control input-lg" placeholder="What did you think of this?"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Save</button></br></br>
         </form>
         </div>
 
-        <div id = "reviewArea">
-            <h3>Reviews</h3>
-        </div>
+        <h3>Reviews</h3>
+        <div id = "reviewArea"></div>
 
 
 

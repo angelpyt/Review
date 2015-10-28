@@ -2,41 +2,107 @@ Parse.initialize("TNeLnzoGV0WL1pusAcUfX0n9mxje6iVD9PPzEaDN", "d03cNBjrb2I2iCmrwc
 
 var Review = Parse.Object.extend('Review');
 
+var currentUser = Parse.User.current();
+
+
+$("#out").on("click", function() {
+	if (currentUser != null) {
+		Parse.User.logOut();
+		location.reload();
+		alert("You have successfully logged out");
+	}
+})
+
+$("#signup").submit(function() {
+	var user = new Parse.User();
+	user.set("username", $("#upname").val());
+	user.set("password", $("#uppassword").val());
+	user.set("reviews", [])
+	user.signUp(null, {
+		success: function(user) {
+			Parse.User.logIn($("#upname").val(), $("#uppassword").val(), {
+				success: function(user) {
+			    document.location.href = "index.html";
+			  },
+			  error: function(error) {
+			    alert("Error: " + error.code + " "+ error.message);
+			    clearInput();
+			  }
+			});
+		}
+	});
+	return false;
+});
+
+$("#signin").submit(function() {
+	Parse.User.logIn($("#inname").val(), $("#inpassword").val(), {
+		success: function(user) {
+			document.location.href = "index.html";
+		},
+		error: function(error) {
+			alert("Error: " + error.code + " " + error.message);
+			clearInput();	
+		}	
+	});
+	return false;
+});
+
+// clears all input fields
+var clear = function() {
+	$("#upname").val("");
+	$("#uppassword").val("");
+	$("#inname").val("");
+	$("#inpassword").val("");
+}
+
+// var currentUser = Parse.User.current();
+// if (currentUser) {
+//     // do stuff with the user
+// } else {
+//     // show the signup or login page
+// }
+
+
+//Rating 
 $('#rating').raty();
 
 $('#write').submit(function() {
-	var review = new Review();	
-	// $(this).find('input').each(function(){
-	// 	review.set($(this).attr('id'), $(this).val());
-	// 	$(this).val('');
-	// })
-	var title = $('#title');
-	review.set('title', title.val());
-	var content = $('#content');
-	review.set('content', content.val());
-	var date = new Date();
-	review.set('date', date.toDateString());
+	if (currentUser != null) {
+		var review = new Review();	
+		// $(this).find('input').each(function(){
+		// 	review.set($(this).attr('id'), $(this).val());
+		// 	$(this).val('');
+		// })
+		var title = $('#title');
+		review.set('title', title.val());
+		var content = $('#content');
+		review.set('content', content.val());
+		var date = new Date();
+		review.set('date', date.toDateString());
 
-	review.set('rating', parseInt($('#rating').raty('score')));
-	review.set('votes', 0);
-	review.set('helpful', 0);
+		review.set('rating', parseInt($('#rating').raty('score')));
+		review.set('votes', 0);
+		review.set('helpful', 0);
+		review.set('user', Parse.User.current());
 
-	review.save(null, {
-		success:function() {
-			//reset values
-			title.val('');
-			content.val('');
-			$('#rating').raty({score: 0});
-			getData();
-		}
-	})
+		review.save(null, {
+			success:function() {
+				title.val('');
+				content.val('');
+				$('#rating').raty({score: 0});
+				getData();
+			}
+		})
+	} else {
+		alert("Sign in to review");
+	}
 	return false;
 })
 
 
 var getData = function() {
 	var query = new Parse.Query(Review);
-
+	query.include("user");
 	query.find({
 		success:function(results) {
 			buildList(results);
@@ -56,6 +122,7 @@ var buildList = function(data) {
 	$("#avgRating").raty({score:rating/(data.length), readOnly: true});
 }
 
+
 var addItem = function(item) {
 	//console.log('addItem', item);
 	var title = item.get('title');
@@ -64,6 +131,7 @@ var addItem = function(item) {
 	var date = item.get('date');
 	var votes = item.get('votes');
 	var helpful = item.get('helpful');
+	var user = item.get('user');
 
 	//var li = $('<li>check' + title + 'out' + content + '</li>');
 	//var li = $('<li></li>');
@@ -73,7 +141,7 @@ var addItem = function(item) {
 	var Content = $('<div id = "C"></div>');
 	Content.text(content);
 	var D = $('<div id = "Date"></div>');
-	D.text("Created on " + date);
+	D.text(" Created on " + date);
 	var Rate = $('<div id = "R"></div>');
 	Rate.raty({score: rating, readOnly: true});
 	var Helpful = $('<div id = "H"></div>');
@@ -82,9 +150,11 @@ var addItem = function(item) {
 	var voteDown = $("<button class='voting'><span class='glyphicon glyphicon-thumbs-down'></span></button>");
 	var button = $('<button id="button" class="btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span></button>');
 	button.click(function() {
-		item.destroy({
-			success:getData
-		})
+		if (currentUser.id == user.id) {
+			item.destroy({
+				success:getData
+			})
+		}
 	})
 
 	voteUp.on("click", function() {
@@ -98,12 +168,12 @@ var addItem = function(item) {
 		item.set("votes", votes += 1);
 		item.save();
 		getData();
+
 	});
 
 	if (votes != 0) {
 		Helpful.text(helpful + " out of " + votes + " found this review helpful.");
 	}
-
 
 	div.append(Rate);
 	div.append(Title);
